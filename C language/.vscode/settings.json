@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.c": "c",
+        "chapter2_hw,c": "c"
+    }
+}
