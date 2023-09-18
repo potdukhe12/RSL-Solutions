@@ -1,0 +1,9 @@
+{
+    "users":[
+        {
+            "name":"Anil Sidhu",
+            "age":29,
+            "email":"abc@test"
+        }
+    ]
+}
