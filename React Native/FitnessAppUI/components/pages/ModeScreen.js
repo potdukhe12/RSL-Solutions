@@ -22,19 +22,19 @@ export default function ModeScreen(props) {
           bgColor={purple}
           textColor='white'
           btnLabel='Beginner'
-          Press={() => props.navigation.navigate("WeakScreen")}
+          Press={() => props.navigation.navigate("WeekScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Intermediate'
-          Press={() => props.navigation.navigate("WeakScreen")}
+          Press={() => props.navigation.navigate("WeekScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Advanced'
-          Press={() => props.navigation.navigate("WeakScreen")}
+          Press={() => props.navigation.navigate("WeekScreen")}
         />
       </View>
 

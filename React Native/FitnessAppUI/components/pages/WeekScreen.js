@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView } from 'react-native'
 import React, { useState } from 'react'
-import BtnMenu from '../BtnMenu'
+import BtnMenu from '../BtnMenu2'
 import Background from '../Background'
 import { purple } from '../Constants'
 
-export default function WeakScreen(props) {
+export default WeekScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -25,52 +25,51 @@ export default function WeakScreen(props) {
           bgColor={purple}
           textColor='white'
           btnLabel='Sunday'
-          Press={() => props.navigation.navigate("ExcerciseScreen", { selectedDay: "Sunday" })}
+          Press={() => props.navigation.navigate("ExerciseScreen", { selectedDay: "Sunday" })}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Monday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Tuesday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Wednesday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Thursday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Friday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
         <BtnMenu
           bgColor={purple}
           textColor='white'
           btnLabel='Saturday'
-          Press={() => props.navigation.navigate("ExcerciseScreen")}
+          Press={() => props.navigation.navigate("ExerciseScreen")}
         />
     </View>
-    </ScrollView>
       <Modal
         transparent={true}
         animationType="slide"
         visible={menuVisible}
         onRequestClose={toggleMenu}
-      >
+        >
         <View style={styles.menuContainer}>
         <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
           <Text style={styles.menuItem} onPress={() => props.navigation.navigate("ModeScreen")}>Exercise with equipment</Text>
@@ -83,6 +82,7 @@ export default function WeakScreen(props) {
           </TouchableOpacity>
         </View>
       </Modal>
+          </ScrollView>
     </Background>
   )
 }
