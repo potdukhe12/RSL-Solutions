@@ -1,15 +1,30 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import BtnMenu from '../BtnMenu'
-import Background from '../Background'
-import { purple } from '../Constants'
+import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import BtnMenu from '../BtnMenu';
+import Background from '../Background2';
+import { purple } from '../Constants';
 
 export default function HomeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
+  const [selectedExerciseType, setSelectedExerciseType] = useState('');
+
+  const selectedGender = props.route.params.selectedGender || 'Male';
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
+
+  const handleExerciseTypeSelection = (exerciseType) => {
+    setSelectedExerciseType(exerciseType);
+    props.navigation.navigate("ModeScreen", { selectedGender: selectedGender,
+                                              exerciseType: exerciseType, });
+  };
+
+  const exerciseTypeOptions = [
+    'Gym Exercise',
+    'Dumbbells Exercise',
+    'Exercise without Equipments',
+  ];
 
   return (
     <Background>
@@ -17,25 +32,19 @@ export default function HomeScreen(props) {
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>Home Screen</Text>
-        <BtnMenu
-          bgColor={purple}
-          textColor='white'
-          btnLabel='Gym Excercise'
-          Press={() => props.navigation.navigate("ModeScreen")}
-        />
-        <BtnMenu
-          bgColor={purple}
-          textColor='white'
-          btnLabel='Excercise with Dumbells'
-          Press={() => props.navigation.navigate("ModeScreen")}
-        />
-        <BtnMenu
-          bgColor={purple}
-          textColor='white'
-          btnLabel='Excercise without equipmets'
-          Press={() => props.navigation.navigate("ModeScreen")}
-        />
+        <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>
+          Home Screen {selectedGender}
+        </Text>
+
+        {exerciseTypeOptions.map((option) => (
+          <BtnMenu
+            key={option}
+            bgColor={option === selectedExerciseType ? 'green' : purple}
+            textColor="white"
+            btnLabel={option}
+            Press={() => handleExerciseTypeSelection(option)}
+          />
+        ))}
       </View>
 
       <Modal
@@ -44,10 +53,8 @@ export default function HomeScreen(props) {
         visible={menuVisible}
         onRequestClose={toggleMenu}
       >
-        <View style={styles.menuContainer} >
+        <View style={styles.menuContainer}>
           <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("ModeScreen")}>Exercise with equipment</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("ModeScreen")}>Exercise without equipment</Text>
           <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
           <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
           <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
@@ -57,7 +64,7 @@ export default function HomeScreen(props) {
         </View>
       </Modal>
     </Background>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -78,9 +85,8 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     flex: 1,
-    // justifyContent: 'center',
     alignItems: 'flex-start',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     paddingHorizontal: 55,
     paddingVertical: 100,
   },
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontWeight: 'bold',
     top: 22,
-    left: 25,
+    right: 25,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,

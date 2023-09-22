@@ -1,10 +1,11 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import BtnMenu from '../BtnMenu'
-import Background from '../Background'
+import Background from '../Background2'
 import { purple } from '../Constants'
 import Video from 'react-native-video';
 import video from '../Videos/BenchPress.mp4';
+// import video2 from '../Videos/dumbbellExercisesMen/DumbbelBenchPress.mp4';
 
 export default function ExerciseDetail(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -18,11 +19,11 @@ export default function ExerciseDetail(props) {
     setInfoModalVisible(!infoModalVisible);
   };
 
-  const exercise = props.route.params.exercise || {
-    name: "Goblet Squats",
-    reps: "10 reps",
-    description: "Hold a dumbbell close to your chest with both hands. Perform squats, keeping your back straight and chest up."
-  };
+  const exercise = props.route.params.exercise;
+  const fileOpt = props.route.params.fileOpt;
+  const link = '../Videos/'+fileOpt+'/'+exercise.name+'.mp4'
+  const link2 = '../Videos/dumbbellExercisesMen/DumbbellBenchPress.mp4'
+  const link3 = "../Videos/BenchPress.mp4"
 
   return (
     <Background>
@@ -33,10 +34,10 @@ export default function ExerciseDetail(props) {
         <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>
             Exercise Detail
         </Text>
-        
+        <Text>link3 = {link3}</Text>
         <View style={styles.videoContainer}>
           <Video
-            source={video} // the video file
+            source={{link3}} // the video file
             paused={false} // make it start
             repeat={true} // make it a loop
             style={styles.video} // style the video component
@@ -82,8 +83,6 @@ export default function ExerciseDetail(props) {
       >
         <View style={styles.menuContainer}>
         <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("ModeScreen")}>Exercise with equipment</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("ModeScreen")}>Exercise without equipment</Text>
           <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
           <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
           <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
     top: -50,
-    left: -20,
+    right: -20,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -119,8 +118,10 @@ const styles = StyleSheet.create({
   menuContainer: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    paddingHorizontal: 55,
+    paddingVertical: 100,
   },
   menuItem: {
     fontSize: 24,
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   closeButton: {
     position: 'absolute',
     top: 22,
-    left: 25,
+    right: 25,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,

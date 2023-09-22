@@ -8,17 +8,18 @@ export default function BtnMenu({ bgColor, btnLabel, textColor, Press }) {
         style={{
             backgroundColor: bgColor,
             borderWidth: 0.1,
-            borderRadius: 15,
+            borderRadius: 50,
             // alignItems: 'flex-start',
             alignItems: 'center',
+            justifyContent: 'center',
             width: '105%',
-            paddingVertical: 10,
+            paddingVertical: 7,
             paddingHorizontal: 25,
             marginBottom: 13,
         }}>
 
         <Text style={{ color: textColor, 
-              fontSize: 28, 
+              fontSize: 24, 
               fontWeight: 'bold' }}>
           {btnLabel}
         </Text>
