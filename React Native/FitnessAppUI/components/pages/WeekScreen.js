@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
@@ -33,7 +33,6 @@ export default WeekScreen = (props) => {
 
   return (
     <Background>
-      <ScrollView>
         <View style={{ marginHorizontal: 75, marginVertical: 40 }}>
           <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
             <Text style={styles.menuButtonText}>III</Text>
@@ -41,16 +40,21 @@ export default WeekScreen = (props) => {
           <Text style={{ color: purple, fontSize: 45, marginBottom: 35 }}>
             Select a Day
           </Text>
+          
+          <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}>
 
-          {daysOfWeek.map((day) => (
-            <BtnMenu
-              key={day}
-              bgColor={day === selectedDay ? 'green' : purple}
-              textColor="white"
-              btnLabel={day}
-              Press={() => handleDaySelection(day)}
-            />
-          ))}
+            {daysOfWeek.map((day) => (
+              <BtnMenu
+                key={day}
+                bgColor={day === selectedDay ? 'green' : purple}
+                textColor="white"
+                btnLabel={day}
+                Press={() => handleDaySelection(day)}
+              />
+            ))}
+
+          </ScrollView>
+
         </View>
 
         <Modal
@@ -69,7 +73,6 @@ export default WeekScreen = (props) => {
             </TouchableOpacity>
           </View>
         </Modal>
-      </ScrollView>
     </Background>
   );
 };

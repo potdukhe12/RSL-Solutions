@@ -12,6 +12,7 @@ import Settings from './components/Settings';
 import WeekScreen from './components/pages/WeekScreen';
 import ExerciseScreen from './components/pages/ExerciseScreen';
 import ExerciseDetail from './components/pages/ExerciseDetail';
+import ExerciseDetail2 from './components/pages/ExerciseDetail2';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ function App() {
           <Stack.Screen name="WeekScreen" component={WeekScreen} />
           <Stack.Screen name="ExerciseScreen" component={ExerciseScreen} />
           <Stack.Screen name="ExerciseDetail" component={ExerciseDetail} />
+          <Stack.Screen name="ExerciseDetail2" component={ExerciseDetail2} />
 
         </Stack.Navigator>
       </NavigationContainer>

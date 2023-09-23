@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
@@ -48,7 +48,7 @@ export default ExerciseScreen = (props) => {
   const handleExercisePress = (exercise) => {
     props.navigation.navigate('ExerciseDetail', {
       exercise: exercise,
-      fileOpt: fileName,
+      fileName: fileName,
       // selectedDay: selectedDay,
       // selectedGender: selectedGender,
       // exerciseType: exerciseType,
@@ -57,32 +57,33 @@ export default ExerciseScreen = (props) => {
   };
 
   return (
-    <View>
-      <Background>
-        <ScrollView>
-          <View style={{ marginHorizontal: 40, marginVertical: 40 }}>
+    <Background>
+          <View style={{ marginHorizontal: 48, marginVertical: 40, width:'80%' }}>
             <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
               <Text style={styles.menuButtonText}>III</Text>
             </TouchableOpacity>
             <Text style={{ color: purple, fontSize: 40, marginBottom: 25 }}>
               Exercise Screen
             </Text>
-            <Text>{selectedDay}</Text>
-            <Text>{selectedGender}</Text>  
-            <Text>{exerciseType}</Text>  
-            <Text>{selectedMode}</Text>  
-            {exercises.map((exercise, index) => (
-              <BtnMenu
-                key={index}
-                bgColor={purple}
-                textColor="white"
-                btnLabel={exercise.name}
-                Press={() => handleExercisePress(exercise)} // Use the handleExercisePress function
-              />
-            ))}
 
+            <ScrollView style={{ height: Dimensions.get('window').height * 0.75, marginBottom: 50 }}>
+
+                {/* <Text>{selectedDay}</Text>
+                <Text>{selectedGender}</Text>  
+                <Text>{exerciseType}</Text>  
+                <Text>{selectedMode}</Text>   */}
+
+              {exercises.map((exercise, index) => (
+                <BtnMenu
+                  key={index}
+                  bgColor={purple}
+                  textColor="white"
+                  btnLabel={exercise.name}
+                  Press={() => handleExercisePress(exercise)} // Use the handleExercisePress function
+                />
+              ))}
+            </ScrollView>
           </View>
-        </ScrollView>
         <Modal
           transparent={true}
           animationType="slide"
@@ -99,16 +100,16 @@ export default ExerciseScreen = (props) => {
             </TouchableOpacity>
           </View>
         </Modal>
+        {/* </ScrollView> */}
       </Background>
-    </View>
   );
 };
 
 const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
-    top: -20,
-    right: -25,
+    top: -25,
+    right: -20,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
