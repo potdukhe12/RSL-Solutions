@@ -4,7 +4,7 @@ import BtnMenu from '../BtnMenu'
 import Background from '../Background2'
 import { purple } from '../Constants'
 import Video from 'react-native-video';
-import MenuModal from './MenuModal'
+import MenuModal from './MenuModal';
 
 export default function ExerciseDetail(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -65,67 +65,6 @@ const SidePlanks = "../Videos/noEquipmentExercisesMen/SidePlanks.mp4";
     // const link3 = require(`../Videos/BenchPress.mp4`);
     // let link4 = "../Videos/dumbbellExercisesMen/DumbbellBicepCurls.mp4";
     // let videoUri = require(link4);
-
-    // let videoUri;
-    // if (pathUrl == "GobletSquats")
-    //   videoUri = require(GobletSquats);
-    // else if (pathUrl == "DumbbellBenchPress")
-    //   videoUri = require(DumbbellBenchPress);
-    // else if (pathUrl == "BentOverRows")
-    //   videoUri = require(BentOverRows);
-    // else if (pathUrl == "DumbbellLunges")
-    //   videoUri = require(DumbbellLunges);
-    // else if (pathUrl == "DumbbellShoulderPress")
-    //   videoUri = require(DumbbellShoulderPress);
-    // else if (pathUrl == "DumbbellRomanianDeadlifts")
-    //   videoUri = require(DumbbellRomanianDeadlifts);
-    // else if (pathUrl == "DumbbellBicepCurls")
-    //   videoUri = require(DumbbellBicepCurls);
-    // else if (pathUrl == "TricepDipswithDumbbells")
-    //   videoUri = require(TricepDipswithDumbbells);
-    // else if (pathUrl == "DumbbellRussianTwists")
-    //   videoUri = require(DumbbellRussianTwists);
-    // else if (pathUrl == "DumbbellPlankRows")
-    //   videoUri = require(DumbbellPlankRows);
-
-    // else if (pathUrl == "BarbellSquats")
-    //   videoUri = require(BarbellSquats);
-    // else if (pathUrl == "LatPulldowns")
-    //   videoUri = require(LatPulldowns);
-    // else if (pathUrl == "SeatedLegPress")
-    //   videoUri = require(SeatedLegPress);
-    // else if (pathUrl == "DumbbellRows")
-    //   videoUri = require(DumbbellRows);
-    // else if (pathUrl == "MachineChestFlyes")
-    //   videoUri = require(MachineChestFlyes);
-    // else if (pathUrl == "CableFacePulls")
-    //   videoUri = require(CableFacePulls);
-    // else if (pathUrl == "LegExtensions")
-    //   videoUri = require(LegExtensions);
-    // else if (pathUrl == "Plank")
-    //   videoUri = require(Plank);
-
-    // else if (pathUrl == "PushUps")
-    //   videoUri = require(PushUps);
-    // else if (pathUrl == "BodyweightSquats")
-    //   videoUri = require(BodyweightSquats);
-    // else if (pathUrl == "Lunges")
-    //   videoUri = require(Lunges);
-    // else if (pathUrl == "MountainClimbers")
-    //   videoUri = require(MountainClimbers);
-    // else if (pathUrl == "GluteBridges")
-    //   videoUri = require(GluteBridges);
-    // else if (pathUrl == "TricepDips")
-    //   videoUri = require(TricepDips);
-    // else if (pathUrl == "Supermans")
-    //   videoUri = require(Supermans);
-    // else if (pathUrl == "HighKnees")
-    //   videoUri = require(HighKnees);
-    // else if (pathUrl == "SidePlanks")
-    //   videoUri = require(SidePlanks);
-
-    // else
-    //   videoUri = require(GobletSquats); // Default exercise
 
     let videoUri;
     
