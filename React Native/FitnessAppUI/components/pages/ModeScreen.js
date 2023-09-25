@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import BtnMenu from '../BtnMenu';
 import Background from '../Background2';
 import { purple } from '../Constants';
+import MenuModal from './MenuModal'; // Import the MenuModal component
 
 export default function ModeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -17,24 +18,26 @@ export default function ModeScreen(props) {
 
   const handleModeSelection = (mode) => {
     setSelectedMode(mode);
-    props.navigation.navigate('WeekScreen', { selectedGender: selectedGender,
-                                              exerciseType: exerciseType,
-                                              selectedMode: mode, });
+    props.navigation.navigate('WeekScreen', {
+      selectedGender: selectedGender,
+      exerciseType: exerciseType,
+      selectedMode: mode,
+    });
   };
 
   const modeOptions = ['Beginner', 'Intermediate', 'Advanced'];
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 40, marginVertical: 70 }}>
+      <View style={{ marginHorizontal: 40, marginVertical: 50 }}>
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>
-          Home Screen
+        <Text style={{ color: purple, fontSize: 55, marginBottom: 65 }}>
+          Select Mode
         </Text>
 
-        { modeOptions.map((option) => (
+        {modeOptions.map((option) => (
           <BtnMenu
             key={option}
             bgColor={option === selectedMode ? 'green' : purple}
@@ -45,22 +48,8 @@ export default function ModeScreen(props) {
         ))}
       </View>
 
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={menuVisible}
-        onRequestClose={toggleMenu}
-      >
-        <View style={styles.menuContainer}>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-          <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
-          <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={toggleMenu}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      {/* Use the MenuModal component here */}
+      <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   );
 }
@@ -68,43 +57,17 @@ export default function ModeScreen(props) {
 const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
-    top: -50,
-    left: -20,
+    top: -30,
+    right: -50,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
     paddingVertical: 8,
-    paddingHorizontal: 14,
+    paddingHorizontal: 12,
   },
   menuButtonText: {
     color: purple,
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
-  },
-  menuContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  },
-  menuItem: {
-    fontSize: 24,
-    color: 'white',
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 22,
-    right: 25,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: purple,
   },
 });

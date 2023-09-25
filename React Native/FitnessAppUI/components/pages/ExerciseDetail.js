@@ -4,13 +4,12 @@ import BtnMenu from '../BtnMenu'
 import Background from '../Background2'
 import { purple } from '../Constants'
 import Video from 'react-native-video';
-import video from '../Videos/BenchPress.mp4';
-// import video2 from '../Videos/dumbbellExercisesMen/DumbbelBenchPress.mp4';
+import MenuModal from './MenuModal'
 
 export default function ExerciseDetail(props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [infoModalVisible, setInfoModalVisible] = useState(false);
-  const [pathUrl, setPathUrl] = useState("");
+  const [pathUrl, setPathUrl] = useState("../Videos/BenchPress.mp4");
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -19,19 +18,214 @@ export default function ExerciseDetail(props) {
   const toggleInfoModal = () => {
     setInfoModalVisible(!infoModalVisible);
   };
-
+  
   const exercise = props.route.params.exercise;
-  const path = exercise.path;
-  useEffect(() => {
-    setPathUrl(path);
-  }, [path]);
   const fileName = props.route.params.fileName;
-  const link2 = require(`../Videos/dumbbellExercisesMen/DumbbellBenchPress.mp4`);
-  const link3 = require(`../Videos/BenchPress.mp4`);
-  const link4 = "../Videos/dumbbellExercisesMen/DumbbellBicepCurls.mp4";
-  // const videoUri = require(link4);
-  // const videoUri = require(path);
-  let videoUri = pathUrl;
+    
+    
+///////////////////////////////////////////////////
+
+// dumbbellExercisesMen (beginner)
+ const GobletSquats= "../Videos/dumbbellExercisesMen/GobletSquats.mp4";
+ const DumbbellBenchPress = "../Videos/dumbbellExercisesMen/DumbbellBenchPress.mp4";
+ const BentOverRows = "../Videos/dumbbellExercisesMen/BentOverRows.mp4";
+ const DumbbellLunges = "../Videos/dumbbellExercisesMen/DumbbellLunges.mp4";
+ const DumbbellShoulderPress = "../Videos/dumbbellExercisesMen/DumbbellShoulderPress.mp4";
+ const DumbbellRomanianDeadlifts = "../Videos/dumbbellExercisesMen/DumbbellRomanianDeadlifts.mp4";
+ const DumbbellBicepCurls = "../Videos/dumbbellExercisesMen/DumbbellBicepCurls.mp4";
+ const TricepDipswithDumbbells = "../Videos/dumbbellExercisesMen/TricepDipswithDumbbells.mp4";
+ const DumbbellRussianTwists = "../Videos/dumbbellExercisesMen/DumbbellRussianTwists.mp4";
+ const DumbbellPlankRows = "../Videos/dumbbellExercisesMen/DumbbellPlankRows.mp4";
+
+//  gymExercisesMen (beginner)
+ const BarbellSquats = "../Videos/gymExercisesMen/BarbellSquats.mp4";
+ const LatPulldowns = "../Videos/gymExercisesMen/LatPulldowns.mp4";
+ const SeatedLegPress = "../Videos/gymExercisesMen/SeatedLegPress.mp4";
+ const DumbbellRows = "../Videos/gymExercisesMen/DumbbellRows.mp4";
+ const MachineChestFlyes = "../Videos/gymExercisesMen/MachineChestFlyes.mp4";
+ const CableFacePulls = "../Videos/gymExercisesMen/CableFacePulls.mp4";
+ const LegExtensions = "../Videos/gymExercisesMen/LegExtensions.mp4";
+ const Plank = "../Videos/gymExercisesMen/Plank.mp4";
+
+//  noEquipmentExercisesMen (beginner)
+ const PushUps = "../Videos/noEquipmentExercisesMen/PushUps.mp4";
+const BodyweightSquats = "../Videos/noEquipmentExercisesMen/BodyweightSquats.mp4";
+const Lunges = "../Videos/noEquipmentExercisesMen/Lunges.mp4";
+const MountainClimbers = "../Videos/noEquipmentExercisesMen/MountainClimbers.mp4";
+const GluteBridges = "../Videos/noEquipmentExercisesMen/GluteBridges.mp4";
+const TricepDips = "../Videos/noEquipmentExercisesMen/TricepDips.mp4";
+const Supermans = "../Videos/noEquipmentExercisesMen/Supermans.mp4";
+const HighKnees = "../Videos/noEquipmentExercisesMen/HighKnees.mp4";
+const SidePlanks = "../Videos/noEquipmentExercisesMen/SidePlanks.mp4";
+
+ 
+///////////////////////////////////////////////////
+
+    // const link2 = require(`../Videos/dumbbellExercisesMen/DumbbellBenchPress.mp4`);
+    // const link3 = require(`../Videos/BenchPress.mp4`);
+    // let link4 = "../Videos/dumbbellExercisesMen/DumbbellBicepCurls.mp4";
+    // let videoUri = require(link4);
+
+    // let videoUri;
+    // if (pathUrl == "GobletSquats")
+    //   videoUri = require(GobletSquats);
+    // else if (pathUrl == "DumbbellBenchPress")
+    //   videoUri = require(DumbbellBenchPress);
+    // else if (pathUrl == "BentOverRows")
+    //   videoUri = require(BentOverRows);
+    // else if (pathUrl == "DumbbellLunges")
+    //   videoUri = require(DumbbellLunges);
+    // else if (pathUrl == "DumbbellShoulderPress")
+    //   videoUri = require(DumbbellShoulderPress);
+    // else if (pathUrl == "DumbbellRomanianDeadlifts")
+    //   videoUri = require(DumbbellRomanianDeadlifts);
+    // else if (pathUrl == "DumbbellBicepCurls")
+    //   videoUri = require(DumbbellBicepCurls);
+    // else if (pathUrl == "TricepDipswithDumbbells")
+    //   videoUri = require(TricepDipswithDumbbells);
+    // else if (pathUrl == "DumbbellRussianTwists")
+    //   videoUri = require(DumbbellRussianTwists);
+    // else if (pathUrl == "DumbbellPlankRows")
+    //   videoUri = require(DumbbellPlankRows);
+
+    // else if (pathUrl == "BarbellSquats")
+    //   videoUri = require(BarbellSquats);
+    // else if (pathUrl == "LatPulldowns")
+    //   videoUri = require(LatPulldowns);
+    // else if (pathUrl == "SeatedLegPress")
+    //   videoUri = require(SeatedLegPress);
+    // else if (pathUrl == "DumbbellRows")
+    //   videoUri = require(DumbbellRows);
+    // else if (pathUrl == "MachineChestFlyes")
+    //   videoUri = require(MachineChestFlyes);
+    // else if (pathUrl == "CableFacePulls")
+    //   videoUri = require(CableFacePulls);
+    // else if (pathUrl == "LegExtensions")
+    //   videoUri = require(LegExtensions);
+    // else if (pathUrl == "Plank")
+    //   videoUri = require(Plank);
+
+    // else if (pathUrl == "PushUps")
+    //   videoUri = require(PushUps);
+    // else if (pathUrl == "BodyweightSquats")
+    //   videoUri = require(BodyweightSquats);
+    // else if (pathUrl == "Lunges")
+    //   videoUri = require(Lunges);
+    // else if (pathUrl == "MountainClimbers")
+    //   videoUri = require(MountainClimbers);
+    // else if (pathUrl == "GluteBridges")
+    //   videoUri = require(GluteBridges);
+    // else if (pathUrl == "TricepDips")
+    //   videoUri = require(TricepDips);
+    // else if (pathUrl == "Supermans")
+    //   videoUri = require(Supermans);
+    // else if (pathUrl == "HighKnees")
+    //   videoUri = require(HighKnees);
+    // else if (pathUrl == "SidePlanks")
+    //   videoUri = require(SidePlanks);
+
+    // else
+    //   videoUri = require(GobletSquats); // Default exercise
+
+    let videoUri;
+    
+switch (pathUrl) {
+  case "GobletSquats":
+    videoUri = require(GobletSquats);
+    break;
+  case "DumbbellBenchPress":
+    videoUri = require(DumbbellBenchPress);
+    break;
+  case "BentOverRows":
+    videoUri = require(BentOverRows);
+    break;
+  case "DumbbellLunges":
+    videoUri = require(DumbbellLunges);
+    break;
+  case "DumbbellShoulderPress":
+    videoUri = require(DumbbellShoulderPress);
+    break;
+  case "DumbbellRomanianDeadlifts":
+    videoUri = require(DumbbellRomanianDeadlifts);
+    break;
+  case "DumbbellBicepCurls":
+    videoUri = require(DumbbellBicepCurls);
+    break;
+  case "TricepDipswithDumbbells":
+    videoUri = require(TricepDipswithDumbbells);
+    break;
+  case "DumbbellRussianTwists":
+    videoUri = require(DumbbellRussianTwists);
+    break;
+  case "DumbbellPlankRows":
+    videoUri = require(DumbbellPlankRows);
+    break;
+  case "BarbellSquats":
+    videoUri = require(BarbellSquats);
+    break;
+  case "LatPulldowns":
+    videoUri = require(LatPulldowns);
+    break;
+  case "SeatedLegPress":
+    videoUri = require(SeatedLegPress);
+    break;
+  case "DumbbellRows":
+    videoUri = require(DumbbellRows);
+    break;
+  case "MachineChestFlyes":
+    videoUri = require(MachineChestFlyes);
+    break;
+  case "CableFacePulls":
+    videoUri = require(CableFacePulls);
+    break;
+  case "LegExtensions":
+    videoUri = require(LegExtensions);
+    break;
+  case "Plank":
+    videoUri = require(Plank);
+    break;
+  case "PushUps":
+    videoUri = require(PushUps);
+    break;
+  case "BodyweightSquats":
+    videoUri = require(BodyweightSquats);
+    break;
+  case "Lunges":
+    videoUri = require(Lunges);
+    break;
+  case "MountainClimbers":
+    videoUri = require(MountainClimbers);
+    break;
+  case "GluteBridges":
+    videoUri = require(GluteBridges);
+    break;
+  case "TricepDips":
+    videoUri = require(TricepDips);
+    break;
+  case "Supermans":
+    videoUri = require(Supermans);
+    break;
+  case "HighKnees":
+    videoUri = require(HighKnees);
+    break;
+  case "SidePlanks":
+    videoUri = require(SidePlanks);
+    break;
+  default:
+    videoUri = require(GobletSquats); // Default exercise
+    break;
+}
+
+
+
+/////////////////////////////////////////////////////
+
+    useEffect(() => {
+      setPathUrl(exercise.path);
+      // const videoUri = require(pathUrl);
+    }, [exercise.path]);
+
+    // let videoUri = require(pathUrl);
 
   return (
     <Background>
@@ -39,21 +233,17 @@ export default function ExerciseDetail(props) {
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 40, marginBottom: 25 }}>
+        <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>
             {exercise.name}
         </Text>
-              <Text>
-                  {videoUri}
-              </Text>
         <View style={styles.videoContainer}>
           <Video
               // source={link2}
               source={videoUri}
-              // source={{ uri: videoUri }}
               paused={false} // make it start
               repeat={true} // make it a loop
               style={styles.video}
-              resizeMode="cover"
+              resizeMode= "contain"
           />
         </View>
         <Text style={styles.infoModalTitle}>Instruction : {exercise.reps}</Text>
@@ -61,7 +251,7 @@ export default function ExerciseDetail(props) {
           style={styles.customButton}
           onPress={toggleInfoModal} // Open the info modal when BtnMenu is pressed
         >
-          <Text style={styles.customButtonText}>{exercise.name}</Text>
+          <Text style={styles.customButtonText}>View Steps</Text>
         </TouchableOpacity>
 
         {/* Info Modal */}
@@ -74,7 +264,7 @@ export default function ExerciseDetail(props) {
           onRequestClose={toggleInfoModal}
         >
           <View style={styles.infoModal}>
-            <Text style={styles.infoModalTitle}>{exercise.name}</Text>
+            <Text style={styles.infoModalTitle}>Follow this steps :</Text>
             <Text style={styles.infoModalDescription}>
               {exercise.description}
             </Text>
@@ -88,34 +278,20 @@ export default function ExerciseDetail(props) {
         </Modal>
       </View>
 
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={menuVisible}
-        onRequestClose={toggleMenu}
-      >
-        <View style={styles.menuContainer}>
-        <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-          <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
-          <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={toggleMenu}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 40,
-    marginVertical: 30,
+    marginHorizontal: 45, 
+    marginVertical: 55, 
+    width: 305 
   },
   menuButton: {
     position: 'absolute',
-    top: -20,
+    top: -35,
     right: -30,
     zIndex: 1,
     backgroundColor: 'white',
@@ -129,34 +305,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
   },
-  menuContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    paddingHorizontal: 55,
-    paddingVertical: 100,
-  },
-  menuItem: {
-    fontSize: 24,
-    color: 'white',
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 22,
-    right: 25,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: purple,
-  },
+  
   // Style for the video container
   videoContainer: {
     flex: 1, // Fill the entire available space
@@ -168,6 +317,7 @@ const styles = StyleSheet.create({
   video: {
     width: '100%', // Set the video width to 100%
     aspectRatio: 1 / 1, // Adjust aspect ratio as needed
+    borderRadius: 10,
   },
   customButton: {
     backgroundColor: purple,
@@ -182,13 +332,12 @@ const styles = StyleSheet.create({
   },
   infoModal: {
     position: 'absolute',
-    bottom: 150,
-    padding: 20,
+    bottom: 80,
+    padding: 30,
     borderRadius: 10,
     backgroundColor: 'white',
-    width: '80%', // Cover 80% of the screen width
-    alignSelf: 'center', // Center horizontally
-    // marginTop: '30%', // Push the modal down to cover 60% of the screen
+    width: '80%',
+    alignSelf: 'center', 
     elevation: 20, // Add a shadow
   },
   infoModalTitle: {

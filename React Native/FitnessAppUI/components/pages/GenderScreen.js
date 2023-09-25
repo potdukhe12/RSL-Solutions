@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet, Image } from 'react-native';
 import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import Background from '../Background2';
 import { purple } from '../Constants';
 import BtnMenu from '../BtnMenu2';
+import MenuModal from './MenuModal'; // Import the MenuModal component
 
 export default function GenderScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -21,21 +22,20 @@ export default function GenderScreen(props) {
 
   return (
     <Background>
-      <View style={{ marginLeft: 65, marginTop: 40 }}>
+      <View style={{ marginHorizontal: 60, marginVertical: 25 }}>
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 20 }}>
+        <Text style={{ color: purple, fontSize: 50, marginBottom: 10 }}>
           Select your Gender
         </Text>
 
-        { genderOptions.map((option) => (
+        {genderOptions.map((option) => (
           <View key={option} style={{ alignItems: 'center', marginBottom: 20 }}>
-            {/* Use option as the key and label */}
             <Image
               style={{
-                width: 100,
-                height: 150,
+                width: 150,
+                height: 230,
                 marginBottom: 5,
               }}
               source={
@@ -56,22 +56,8 @@ export default function GenderScreen(props) {
         ))}
       </View>
 
-      <Modal
-        transparent={true}
-        animationType="slide"
-        visible={menuVisible}
-        onRequestClose={toggleMenu}
-      >
-        <View style={styles.menuContainer}>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-          <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
-          <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
-          <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
-          <TouchableOpacity style={styles.closeButton} onPress={toggleMenu}>
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
+      {/* Use the MenuModal component here */}
+      <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   );
 }
@@ -79,46 +65,17 @@ export default function GenderScreen(props) {
 const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
-    top: -20,
-    right: -60,
+    top: -10,
+    right: -55,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
     paddingVertical: 8,
-    paddingHorizontal: 14,
+    paddingHorizontal: 12,
   },
   menuButtonText: {
     color: purple,
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
-  },
-  menuContainer: {
-    flex: 1,
-    // justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    paddingHorizontal: 55,
-    paddingVertical: 100,
-  },
-  menuItem: {
-    fontSize: 24,
-    color: 'white',
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    position: 'absolute',
-    fontWeight: 'bold',
-    top: 22,
-    right: 25,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: purple,
   },
 });

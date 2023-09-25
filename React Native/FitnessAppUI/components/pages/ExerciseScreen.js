@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
 import { purple } from '../Constants';
+import MenuModal from './MenuModal';
 import dumbbellExercisesMen from './dumbbellExercisesMen';
 import gymExercisesMen from './gymExercisesMen';
 import noEquipmentExercisesMen from './noEquipmentExercisesMen';
@@ -58,58 +59,48 @@ export default ExerciseScreen = (props) => {
 
   return (
     <Background>
-          <View style={{ marginHorizontal: 48, marginVertical: 40, width:'80%' }}>
-            <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-              <Text style={styles.menuButtonText}>III</Text>
-            </TouchableOpacity>
-            <Text style={{ color: purple, fontSize: 40, marginBottom: 25 }}>
-              Exercise Screen
-            </Text>
+      <View style={{ marginHorizontal: 45, marginVertical: 30, width: 305  }}>
+        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
+          <Text style={styles.menuButtonText}>III</Text>
+        </TouchableOpacity>
+        <Text style={{ color: purple, fontSize: 50, marginBottom: 10 }}>
+          Exercise Screen
+        </Text>
 
-            <ScrollView style={{ height: Dimensions.get('window').height * 0.75, marginBottom: 50 }}>
+        <ScrollView style={{ height: Dimensions.get('window').height * 0.85, 
+                    marginBottom: 10, }}
+                    showsVerticalScrollIndicator={false} >
+          <View style={{ marginBottom: 100, marginTop: 30 }}>
+            {/* <Text>{selectedDay}</Text>
+            <Text>{selectedGender}</Text>  
+            <Text>{exerciseType}</Text>  
+            <Text>{selectedMode}</Text>   */}
 
-                {/* <Text>{selectedDay}</Text>
-                <Text>{selectedGender}</Text>  
-                <Text>{exerciseType}</Text>  
-                <Text>{selectedMode}</Text>   */}
+            {exercises.map((exercise, index) => (
+              <BtnMenu
+                key={index}
+                bgColor={purple}
+                textColor="white"
+                btnLabel={exercise.name}
+                Press={() => handleExercisePress(exercise)} // Use the handleExercisePress function
+              />
+            ))}
 
-              {exercises.map((exercise, index) => (
-                <BtnMenu
-                  key={index}
-                  bgColor={purple}
-                  textColor="white"
-                  btnLabel={exercise.name}
-                  Press={() => handleExercisePress(exercise)} // Use the handleExercisePress function
-                />
-              ))}
-            </ScrollView>
           </View>
-        <Modal
-          transparent={true}
-          animationType="slide"
-          visible={menuVisible}
-          onRequestClose={toggleMenu}
-        >
-          <View style={styles.menuContainer}>
-            <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-            <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
-            <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
-            <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
-            <TouchableOpacity style={styles.closeButton} onPress={toggleMenu}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
-        {/* </ScrollView> */}
-      </Background>
+        </ScrollView>
+      </View>
+
+      {/* Use the MenuModal component here */}
+      <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
+    </Background>
   );
 };
 
 const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
-    top: -25,
-    right: -20,
+    top: -15,
+    right: -30,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -120,33 +111,5 @@ const styles = StyleSheet.create({
     color: purple,
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
-  },
-  menuContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    paddingHorizontal: 55,
-    paddingVertical: 100,
-  },
-  menuItem: {
-    fontSize: 24,
-    color: 'white',
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 22,
-    right: 25,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: purple,
   },
 });

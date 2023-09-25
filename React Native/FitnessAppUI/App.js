@@ -13,6 +13,7 @@ import WeekScreen from './components/pages/WeekScreen';
 import ExerciseScreen from './components/pages/ExerciseScreen';
 import ExerciseDetail from './components/pages/ExerciseDetail';
 import ExerciseDetail2 from './components/pages/ExerciseDetail2';
+import BMICalculator from './components/BMICalculator';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ function App() {
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="BMICalculator" component={BMICalculator} />
           <Stack.Screen name="GenderScreen" component={GenderScreen} />
           <Stack.Screen name="HomeScreen" component={HomeScreen} />
           <Stack.Screen name="ModeScreen" component={ModeScreen} />

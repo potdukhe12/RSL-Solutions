@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
 import { purple } from '../Constants';
+import MenuModal from './MenuModal'; // Import the MenuModal component
 
 export default WeekScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -25,54 +26,42 @@ export default WeekScreen = (props) => {
   const handleDaySelection = (day) => {
     setSelectedDay(day);
     const { selectedGender, exerciseType, selectedMode } = props.route.params;
-    props.navigation.navigate('ExerciseScreen', { selectedGender: selectedGender,
-                                                  exerciseType: exerciseType,
-                                                  selectedMode: selectedMode,
-                                                  selectedDay: day, });
+    props.navigation.navigate('ExerciseScreen', {
+      selectedGender: selectedGender,
+      exerciseType: exerciseType,
+      selectedMode: selectedMode,
+      selectedDay: day,
+    });
   };
 
   return (
     <Background>
-        <View style={{ marginHorizontal: 75, marginVertical: 40 }}>
-          <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-            <Text style={styles.menuButtonText}>III</Text>
-          </TouchableOpacity>
-          <Text style={{ color: purple, fontSize: 45, marginBottom: 35 }}>
-            Select a Day
-          </Text>
-          
-          <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}>
+      <View style={{ marginHorizontal: 45, marginVertical: 40, width: 300 }}>
+        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
+          <Text style={styles.menuButtonText}>III</Text>
+        </TouchableOpacity>
+        <Text style={{ color: purple, fontSize: 60, marginBottom: 45 }}>
+          Select Day
+        </Text>
 
-            {daysOfWeek.map((day) => (
-              <BtnMenu
-                key={day}
-                bgColor={day === selectedDay ? 'green' : purple}
-                textColor="white"
-                btnLabel={day}
-                Press={() => handleDaySelection(day)}
-              />
-            ))}
+        <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}>
 
-          </ScrollView>
+          {daysOfWeek.map((day) => (
+            <BtnMenu
+              key={day}
+              bgColor={day === selectedDay ? 'green' : purple}
+              textColor="white"
+              btnLabel={day}
+              Press={() => handleDaySelection(day)}
+            />
+          ))}
 
-        </View>
+        </ScrollView>
 
-        <Modal
-          transparent={true}
-          animationType="slide"
-          visible={menuVisible}
-          onRequestClose={toggleMenu}
-        >
-          <View style={styles.menuContainer}>
-            <Text style={styles.menuItem} onPress={() => props.navigation.navigate("HomeScreen")}>Home</Text>
-            <Text style={styles.menuItem} onPress={() => alert("Reset password")}>Reset password</Text>
-            <Text style={styles.menuItem} onPress={() => props.navigation.navigate("Settings")}>Settings</Text>
-            <Text style={styles.menuItem} onPress={() => {alert("You are logged out!");props.navigation.navigate("Home") }}>Logout</Text>
-            <TouchableOpacity style={styles.closeButton} onPress={toggleMenu}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
-        </Modal>
+      </View>
+
+      {/* Use the MenuModal component here */}
+      <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   );
 };
@@ -81,7 +70,7 @@ const styles = StyleSheet.create({
   menuButton: {
     position: 'absolute',
     top: -20,
-    right: -70,
+    right: -40,
     zIndex: 1,
     backgroundColor: 'white',
     borderRadius: 10,
@@ -92,33 +81,5 @@ const styles = StyleSheet.create({
     color: purple,
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
-  },
-  menuContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    paddingHorizontal: 55,
-    paddingVertical: 100,
-  },
-  menuItem: {
-    fontSize: 24,
-    color: 'white',
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  closeButton: {
-    position: 'absolute',
-    top: 22,
-    right: 25,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  closeButtonText: {
-    fontSize: 18,
-    color: purple,
   },
 });
