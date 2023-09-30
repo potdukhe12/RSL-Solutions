@@ -7,7 +7,7 @@ export default function BtnMenu({ bgColor, btnLabel, textColor, Press }) {
         onPress={Press}
         style={{
             backgroundColor: bgColor,
-            borderWidth: 0.1,
+            // borderWidth: 0.1,
             borderRadius: 15,
             // alignItems: 'flex-start',
             alignItems: 'center',

@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Background from './Background2';
 import { purple } from './Constants';
 import Field from './Field';
 import Btn from './Btn';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = (props) => {
+
+  // const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async() =>{
+    if(email && password) {
+      try{
+        await signInWithEmailAndPassword(auth, email, password);
+      }catch(err){
+          console.log('Login error: ', err.message );
+      }
+    }
+  } 
+
   return (
     <Background>
       <View style={styles.container}>
@@ -13,8 +29,8 @@ const Login = (props) => {
         <View style={styles.formContainer}>
           <Text style={styles.welcomeText}>Welcome Back</Text>
           <Text style={styles.loginDescription}>Login to your account</Text>
-          <Field placeholder="Email / Username" keyboardType={'email-address'} />
-          <Field placeholder="Password" secureTextEntry={true} />
+          <Field placeholder="Email" keyboardType={'email-address'} value={email} onChangeText={value => setEmail(value)} />
+          <Field placeholder="Password" secureTextEntry={true} value={password} onChangeText={value=>setPassword(value)} />
           <TouchableOpacity
             style={styles.forgotPassword}
             onPress={() => {

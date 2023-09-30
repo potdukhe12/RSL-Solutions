@@ -1,10 +1,11 @@
-import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import BtnMenu from '../BtnMenu'
 import Background from '../Background2'
-import { purple } from '../Constants'
+import { purple, white } from '../Constants'
 import Video from 'react-native-video';
 import MenuModal from './MenuModal';
+import FastImage from 'react-native-fast-image'
 
 export default function ExerciseDetail(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -20,7 +21,7 @@ export default function ExerciseDetail(props) {
   };
   
   const exercise = props.route.params.exercise;
-  const fileName = props.route.params.fileName;
+  // const fileName = props.route.params.fileName;
     
     
 ///////////////////////////////////////////////////
@@ -151,7 +152,7 @@ switch (pathUrl) {
     videoUri = require(SidePlanks);
     break;
   default:
-    videoUri = require(GobletSquats); // Default exercise
+    videoUri = require("../Videos/BenchPress.mp4");
     break;
 }
 
@@ -172,27 +173,38 @@ switch (pathUrl) {
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 25 }}>
-            {exercise.name}
-        </Text>
-        <View style={styles.videoContainer}>
-          <Video
-              // source={link2}
-              source={videoUri}
-              paused={false} // make it start
-              repeat={true} // make it a loop
-              style={styles.video}
-              resizeMode= "contain"
-          />
-        </View>
-        <Text style={styles.infoModalTitle}>Instruction : {exercise.reps}</Text>
-        <TouchableOpacity
-          style={styles.customButton}
-          onPress={toggleInfoModal} // Open the info modal when BtnMenu is pressed
-        >
-          <Text style={styles.customButtonText}>View Steps</Text>
-        </TouchableOpacity>
-
+        <ScrollView style={{ height: Dimensions.get('window').height * 0.85, 
+                    marginBottom: 10, }}
+                    showsVerticalScrollIndicator={false} >
+          <Text style={{ color: purple, fontSize: 50, marginBottom: 25, }}>
+              {exercise.name}
+          </Text>
+          <View style={styles.videoContainer}>
+            <Video
+                // source={link2}
+                source={videoUri}
+                paused={false} // make it start
+                repeat={true} // make it a loop
+                style={styles.video}
+                resizeMode= "contain"
+            />
+            {/* <FastImage
+                source={{
+                uri: 'https://i.makeagif.com/media/12-13-2016/2G2Qfr.gif',
+                priority: FastImage.priority.normal,
+                }}
+                style={{ width: 350, height: 200 }}
+                resizeMode={FastImage.resizeMode.contain}
+                /> */}
+          </View>
+          <Text style={styles.infoModalTitle}>Instruction : {exercise.reps}</Text>
+          <TouchableOpacity
+            style={styles.customButton}
+            onPress={toggleInfoModal} // Open the info modal when BtnMenu is pressed
+          >
+            <Text style={styles.customButtonText}>View Steps</Text>
+          </TouchableOpacity>
+        </ScrollView>
         {/* Info Modal */}
         <Modal
           visible={infoModalVisible}
@@ -202,17 +214,33 @@ switch (pathUrl) {
           animationOut="fadeOut"
           onRequestClose={toggleInfoModal}
         >
-          <View style={styles.infoModal}>
-            <Text style={styles.infoModalTitle}>Follow this steps :</Text>
-            <Text style={styles.infoModalDescription}>
-              {exercise.description}
-            </Text>
-            <TouchableOpacity
-              style={styles.infoModalCloseButton}
-              onPress={toggleInfoModal} // Close the modal when the close button is pressed
-            >
-              <Text style={styles.infoModalCloseButtonText}>Close</Text>
-            </TouchableOpacity>
+          <View style={styles.infoContainer}>
+              <View style={styles.infoModal}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <Text style={styles.infoModalTitle}>Follow this steps :</Text>
+                <View>
+                  {exercise.description.split('. ').map((point, index) => (
+                    <Text key={index} style={styles.infoModalDescription}>
+                      • {' '}{point}
+                    </Text>
+                  ))}
+                </View>
+        
+                <Text style={styles.infoModalTitle}>Uses :</Text>
+                <View>
+                  <Text style={styles.infoModalDescription}>{exercise.use}</Text>
+                </View>
+                </ScrollView>
+                <View style={styles.infoModalButtonContainer}>
+                  <Text style={styles.arrowButtonText}>Scroll Down<Text style={{transform: [{ rotate: '90deg' }]}}>{'>'}</Text></Text>
+                  <TouchableOpacity
+                    style={styles.infoModalCloseButton}
+                    onPress={toggleInfoModal} // Close the modal when the close button is pressed
+                  >
+                    <Text style={styles.infoModalCloseButtonText}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
           </View>
         </Modal>
       </View>
@@ -237,7 +265,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 8,
     paddingHorizontal: 14,
-    elevation: 10, // Add a shadow
+    elevation: 3, // Add a shadow
   },
   menuButtonText: {
     color: purple,
@@ -251,6 +279,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center horizontally
     alignItems: 'center', // Center vertically
     marginBottom: 30,
+    borderRadius: 20,
+    elevation: 1,
+    padding: 10,
   },
   // Style for the Video component
   video: {
@@ -263,11 +294,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingVertical: 12,
     paddingHorizontal: 24,
+    marginBottom: 50,
     alignItems: 'center',
+    // borderRadius: 10,
+    elevation: 5,
   },
   customButtonText: {
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+  infoContainer: {
+    flex: 1,
+    alignItems: 'flex-start',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   infoModal: {
     position: 'absolute',
@@ -276,25 +316,44 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'white',
     width: '80%',
+    height: '65%',
     alignSelf: 'center', 
     elevation: 20, // Add a shadow
   },
   infoModalTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 10,
+    marginBottom: 15,
     color: purple,
     alignSelf: 'center'
   },
   infoModalDescription: {
-    fontSize: 18,
-    marginBottom: 20,
+    fontSize: 20,
+    marginBottom: 15,
+  },
+  infoModalButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  arrowButtonText: {
+    alignSelf: 'flex-start',
+    color: 'gray',
+    fontSize: 16,
+    marginTop: 20,
   },
   infoModalCloseButton: {
+    flexDirection: 'row',
     alignSelf: 'flex-end',
+    borderRadius: 10,
+    elevation: 10,
   },
+  
   infoModalCloseButtonText: {
     fontSize: 18,
-    color: purple,
+    color: 'white',
+    backgroundColor: purple,
+    borderRadius: 7,
+    padding: 5
   },
 });

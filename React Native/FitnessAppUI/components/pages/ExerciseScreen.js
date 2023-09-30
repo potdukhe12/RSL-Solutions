@@ -38,18 +38,19 @@ export default ExerciseScreen = (props) => {
   else
     fileOpt = dumbbellExercisesMen;
 
-  let exercises;
-  if(selectedMode === 'Intermediate')
-    exercises = fileOpt.intermediate.exercises;
-  else if(selectedMode === 'Advanced')
-    exercises = fileOpt.advanced.exercises;
-  else
-      exercises = fileOpt.beginner.exercises;
+  let exercises = fileOpt[selectedMode].exercises;
+  // let exercises;
+  // if(selectedMode === 'Intermediate')
+  //   exercises = fileOpt.intermediate.exercises;
+  // else if(selectedMode === 'Advanced')
+  //   exercises = fileOpt.advanced.exercises;
+  // else
+  //     exercises = fileOpt.beginner.exercises;
   
   const handleExercisePress = (exercise) => {
     props.navigation.navigate('ExerciseDetail', {
       exercise: exercise,
-      fileName: fileName,
+      // fileName: fileName,
       // selectedDay: selectedDay,
       // selectedGender: selectedGender,
       // exerciseType: exerciseType,

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Dimensions, StyleSheet } from 'react-native';
-import Background from './Background';
+import Background from './Background2';
 import { purple } from './Constants';
 import Field from './Field';
 import Btn from './Btn';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebase';
 
 const Signup = (props) => {
     const [firstName, setFirstName] = useState('');
@@ -14,7 +16,7 @@ const Signup = (props) => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [validationError, setValidationError] = useState('');
   
-    const handleSignup = () => {
+    const handleSignup = async () => {
         setValidationError('');
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -27,6 +29,35 @@ const Signup = (props) => {
       } else if (password !== confirmPassword) {
         setValidationError('Passwords do not match.');
       } else {
+
+///////////////////////////////////////////////////
+
+        // try {
+        //   // Create a new user account using Firebase Authentication
+        //   const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      
+        //   // User account has been created successfully
+        //   const user = userCredential.user;
+        //   console.log('User signed up:', user);
+        //   props.navigation.navigate('Login');
+        // } catch (error) {
+        //   // Handle errors, e.g., display an error message to the user
+        //   console.error('Error signing up:', error);
+        //   // Set an error state variable to display an error message to the user if needed
+        // }
+
+/* method 2 */
+        // try{
+        //   await createUserWithEmailAndPassword(auth, email,password);
+        //   alert("Account created");
+        //   props.navigation.navigate('Login');
+        // }catch(err){
+        //   console.log('Error signing up:: ', err.message);
+        // }
+
+///////////////////////////////////////////////////
+
+
         // Valid form, proceed with signup
         alert("Account created");
         props.navigation.navigate('Login');

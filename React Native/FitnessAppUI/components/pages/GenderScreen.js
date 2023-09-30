@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
 import Background from '../Background2';
 import { purple } from '../Constants';
 import BtnMenu from '../BtnMenu2';
@@ -22,21 +22,25 @@ export default function GenderScreen(props) {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 60, marginVertical: 25 }}>
+      <View style={{ marginHorizontal: 60, marginVertical: 25, width: 265 }}>
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 10 }}>
-          Select your Gender
+        
+        <Text style={{ color: purple, fontSize: 45, marginBottom: 10 }}>
+          Select Gender
         </Text>
-
-        {genderOptions.map((option) => (
+        <ScrollView style={{ 
+                    height: 580,
+                    // height: Dimensions.get('window').height * 1, 
+                    marginBottom: 10, }}
+                    showsVerticalScrollIndicator={false} >
+        { genderOptions.map((option) => (
           <View key={option} style={{ alignItems: 'center', marginBottom: 20 }}>
             <Image
               style={{
                 width: 150,
-                height: 230,
-                marginBottom: 5,
+                height: 210,
               }}
               source={
                 option === 'Male'
@@ -48,12 +52,12 @@ export default function GenderScreen(props) {
               bgColor={option === gender ? 'green' : purple}
               textColor="white"
               btnLabel={option}
-              Press={() => {
-                handleGenderSelection(option);
-              }}
+              Press={() => {handleGenderSelection(option);}}
             />
           </View>
         ))}
+        <View style={{ marginBottom: 60 }}></View>
+       </ScrollView>
       </View>
 
       {/* Use the MenuModal component here */}
@@ -77,5 +81,6 @@ const styles = StyleSheet.create({
     color: purple,
     fontSize: 22,
     transform: [{ rotate: '90deg' }],
+    fontFamily: 'Cochin',
   },
 });
