@@ -4,6 +4,7 @@ import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
 import { purple } from '../Constants';
 import MenuModal from './MenuModal'; // Import the MenuModal component
+import style from '../style';
 
 export default WeekScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -36,16 +37,17 @@ export default WeekScreen = (props) => {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 45, marginVertical: 40, width: 300 }}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+      <View style={style.screenStyle}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 60, marginBottom: 45 }}>
-          Select Day
+        <Text style={style.title}>
+          Select Day : 
         </Text>
 
-        <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}>
-
+        {/* <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}> */}
+        <ScrollView style={style.scrollStyle}
+                    showsVerticalScrollIndicator={false} >
           {daysOfWeek.map((day) => (
             <BtnMenu
               key={day}
@@ -55,7 +57,7 @@ export default WeekScreen = (props) => {
               Press={() => handleDaySelection(day)}
             />
           ))}
-
+          <View style={{ marginBottom: 60 }}></View>
         </ScrollView>
 
       </View>

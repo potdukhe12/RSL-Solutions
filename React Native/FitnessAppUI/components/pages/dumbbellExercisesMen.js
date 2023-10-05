@@ -23,7 +23,7 @@ export default dumbbellExercisesMen = {
           name: "Bent-Over Rows",
           reps: "10 reps",
           description: "Bend at the hips, keeping your back straight, and hold a dumbbell in each hand. Pull the dumbbells towards your hips while squeezing your shoulder blades together.",
-          path: "BentOverRows",
+          path: "DumbbellBentOverRows",
           use: "Bent-over rows primarily work your upper back muscles, including the latissimus dorsi, rhomboids, and trapezius."
         },
         {
@@ -123,7 +123,7 @@ export default dumbbellExercisesMen = {
           name: "Dumbbell Bent-Over Rows",
           reps: "12 reps",
           description: "Bend at the hips, keeping your back straight, and hold a dumbbell in each hand. Pull the dumbbells towards your hips while squeezing your shoulder blades together.",
-          path: "DumbbellBentOverRows",
+          path: "BentOverRows",
           use: "Dumbbell bent-over rows target the upper back and lats while improving posture and muscular balance."
         },
         {
@@ -174,7 +174,7 @@ export default dumbbellExercisesMen = {
           name: "Dumbbell Renegade Rows with Push-Ups",
           reps: "8 reps each arm",
           description: "Start in a plank position with a dumbbell in each hand. Perform a renegade row with one arm, then a push-up, and alternate arms.",
-          path: "DumbbellRenegadeRowswithPushUps",
+          path: "DumbbellRenegadeRows",
           use: "Dumbbell renegade rows with push-ups provide a challenging upper-body and core workout, enhancing strength and stability."
         },
         {
@@ -195,42 +195,42 @@ export default dumbbellExercisesMen = {
           name: "Dumbbell Bulgarian Split Squats with Isometric Holds",
           reps: "8 reps each leg",
           description: "Hold a dumbbell in each hand, and place one foot on a bench or elevated surface behind you. Lower your back knee toward the ground, then hold in the lowest position before pushing back up.",
-          path: "DumbbellBulgarianSplitSquatswithIsometricHolds",
+          path: "DumbbellBulgarianSplitSquats",
           use: "Dumbbell Bulgarian split squats with isometric holds intensify lower-body strength and endurance, targeting the quadriceps and glutes."
         },
         {
           name: "Dumbbell Bent-Over Rows with Iso-Hold",
           reps: "10 reps",
           description: "Bend at the hips, keeping your back straight, and hold a dumbbell in each hand. Pull the dumbbells towards your hips while holding the top position for a few seconds.",
-          path: "DumbbellBentOverRowswithIsoHold",
+          path: "BentOverRows",
           use: "Dumbbell bent-over rows with isometric holds challenge your back and promote muscular endurance and control."
         },
         {
           name: "Dumbbell Hammer Curls with Drop Sets",
           reps: "10 reps (then decrease weight and do 10 more)",
           description: "Hold a heavier dumbbell in each hand by your sides, palms facing each other. Perform 10 hammer curls, then switch to lighter dumbbells and do 10 more curls.",
-          path: "DumbbellHammerCurlswithDropSets",
+          path: "DumbbellHammerCurls",
           use: "Dumbbell hammer curls with drop sets build arm strength and hypertrophy, focusing on the biceps and brachialis."
         },
         {
           name: "Dumbbell Skull Crushers with Negatives",
           reps: "8 reps",
           description: "Lie on a bench or the floor, holding a dumbbell in each hand above your chest. Perform skull crushers, then focus on a slow negative (lowering) phase.",
-          path: "DumbbellSkullCrusherswithNegatives",
+          path: "DumbbellSkullCrushers",
           use: "Dumbbell skull crushers with negatives provide an advanced tricep workout, emphasizing muscle control and strength."
         },
         {
           name: "Dumbbell Russian Twists with Weighted Twist",
           reps: "20 twists total",
           description: "Sit on the floor, holding a dumbbell with both hands. Perform Russian twists while bringing the dumbbell to each side during the twist.",
-          path: "DumbbellRussianTwistswithWeightedTwist",
+          path: "DumbbellRussianTwists",
           use: "Dumbbell Russian twists with weighted twists intensify core engagement, enhancing abdominal strength and endurance."
         },
         {
           name: "Dumbbell Farmer's Walk with Overhead Carry",
           reps: "30-40 seconds",
           description: "Hold a heavy dumbbell in each hand by your sides. Walk forward for the designated time, then switch to holding the dumbbells overhead for the same time.",
-          path: "DumbbellFarmersWalkwithOverheadCarry",
+          path: "DumbbellFarmersWalk",
           use: "Dumbbell farmer's walk with overhead carry challenges grip strength, shoulder stability, and overall muscular endurance."
         },
       ],

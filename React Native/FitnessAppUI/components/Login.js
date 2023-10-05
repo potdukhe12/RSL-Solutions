@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Background from './Background2';
 import { purple } from './Constants';
 import Field from './Field';
@@ -63,7 +63,8 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: '100%',
+    // width: '100%',
+    width: Dimensions.get('window').width,
   },
   title: {
     color: 'white',
@@ -74,8 +75,8 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: '#FFFFFF',
     height: 720,
-    width: 393,
-    left: 0,
+    // width: 393,
+    width: Dimensions.get('window').width*0.95,
     borderTopLeftRadius: 60,
     borderTopRightRadius: 60,
     paddingTop: 70,

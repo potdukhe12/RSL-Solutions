@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import BtnMenu from '../BtnMenu';
 import Background from '../Background2';
 import { purple } from '../Constants';
-import MenuModal from './MenuModal'; // Import the MenuModal component
+import MenuModal from './MenuModal'; 
+import style from '../style';
 
 export default function ModeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -29,23 +30,26 @@ export default function ModeScreen(props) {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 40, marginVertical: 50 }}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+      <View style={style.screenStyle}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 55, marginBottom: 65 }}>
-          Select Mode
+        <Text style={style.title}>
+          Select Mode :
         </Text>
 
-        {modeOptions.map((option) => (
-          <BtnMenu
-            key={option}
-            bgColor={option === selectedMode ? 'green' : purple}
-            textColor="white"
-            btnLabel={option}
-            Press={() => handleModeSelection(option)}
-          />
-        ))}
+        <ScrollView style={style.scrollStyle}
+                    showsVerticalScrollIndicator={false} >
+            {modeOptions.map((option) => (
+            <BtnMenu
+              key={option}
+              bgColor={option === selectedMode ? 'green' : purple}
+              textColor="white"
+              btnLabel={option}
+              Press={() => handleModeSelection(option)}
+            />
+          ))}
+        </ScrollView>
       </View>
 
       {/* Use the MenuModal component here */}
@@ -54,20 +58,3 @@ export default function ModeScreen(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  menuButton: {
-    position: 'absolute',
-    top: -30,
-    right: -50,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  menuButtonText: {
-    color: purple,
-    fontSize: 22,
-    transform: [{ rotate: '90deg' }],
-  },
-});

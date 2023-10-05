@@ -4,6 +4,7 @@ import BtnMenu from '../BtnMenu2';
 import Background from '../Background2';
 import { purple } from '../Constants';
 import MenuModal from './MenuModal';
+import style from '../style2';
 import dumbbellExercisesMen from './dumbbellExercisesMen';
 import gymExercisesMen from './gymExercisesMen';
 import noEquipmentExercisesMen from './noEquipmentExercisesMen';
@@ -60,34 +61,27 @@ export default ExerciseScreen = (props) => {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 45, marginVertical: 30, width: 305  }}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+      <View style={style.screenStyle}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 10 }}>
-          Exercise Screen
+        <Text style={style.title}>
+          Exercise Screen : 
         </Text>
 
-        <ScrollView style={{ height: Dimensions.get('window').height * 0.85, 
-                    marginBottom: 10, }}
+        <ScrollView style={style.scrollStyle}
                     showsVerticalScrollIndicator={false} >
-          <View style={{ marginBottom: 100, marginTop: 30 }}>
-            {/* <Text>{selectedDay}</Text>
-            <Text>{selectedGender}</Text>  
-            <Text>{exerciseType}</Text>  
-            <Text>{selectedMode}</Text>   */}
+          {exercises.map((exercise, index) => (
+            <BtnMenu
+              key={index}
+              bgColor={index === selectedExercise ? 'green' : purple}
+              textColor="white"
+              btnLabel={exercise.name}
+              Press={() => handleExercisePress(exercise)}
+            />
+          ))}
 
-            {exercises.map((exercise, index) => (
-              <BtnMenu
-                key={index}
-                bgColor={purple}
-                textColor="white"
-                btnLabel={exercise.name}
-                Press={() => handleExercisePress(exercise)} // Use the handleExercisePress function
-              />
-            ))}
-
-          </View>
+          <View style={{ marginBottom: 100, }}></View>
         </ScrollView>
       </View>
 

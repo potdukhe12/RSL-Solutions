@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import BtnMenu from '../BtnMenu';
 import Background from '../Background2';
 import { purple } from '../Constants';
-import MenuModal from './MenuModal'; // Import the MenuModal component
+import MenuModal from './MenuModal'; 
+import style from '../style';
 
 export default function HomeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -31,23 +32,26 @@ export default function HomeScreen(props) {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 40, marginVertical: 35, width: 295 }}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+    <View style={style.screenStyle}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 48, marginBottom: 50 }}>
-          Select Exercise Type
+        <Text style={style.title}>
+          Select Exercise Type : 
         </Text>
-
-        {exerciseTypeOptions.map((option) => (
-          <BtnMenu
-            key={option}
-            bgColor={option === selectedExerciseType ? 'green' : purple}
-            textColor="white"
-            btnLabel={option}
-            Press={() => handleExerciseTypeSelection(option)}
-          />
-        ))}
+        
+        <ScrollView style={style.scrollStyle}
+                    showsVerticalScrollIndicator={false} >
+          {exerciseTypeOptions.map((option) => (
+            <BtnMenu
+              key={option}
+              bgColor={option === selectedExerciseType ? 'green' : purple}
+              textColor="white"
+              btnLabel={option}
+              Press={() => handleExerciseTypeSelection(option)}
+            />
+          ))}
+        </ScrollView>
       </View>
 
       {/* Use the MenuModal component here */}
@@ -56,20 +60,24 @@ export default function HomeScreen(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  menuButton: {
-    position: 'absolute',
-    top: -10,
-    right: -50,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  menuButtonText: {
-    color: purple,
-    fontSize: 22,
-    transform: [{ rotate: '90deg' }],
-  },
-});
+// const styles = StyleSheet.create({
+//   screenStyle: {
+//     padding: 40,
+//     width: Dimensions.get('window').width,
+//   },
+//   menuButton: {
+//     position: 'absolute',
+//     top: 10,
+//     right: 10,
+//     zIndex: 1,
+//     backgroundColor: 'white',
+//     borderRadius: 10,
+//     paddingVertical: 8,
+//     paddingHorizontal: 12,
+//   },
+//   menuButtonText: {
+//     color: purple,
+//     fontSize: 22,
+//     transform: [{ rotate: '90deg' }],
+//   },
+// });

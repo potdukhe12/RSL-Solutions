@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <>
-      <StatusBar backgroundColor='#EBB3A6' /> 
+      <StatusBar backgroundColor='#f0aea5' /> 
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Home" component={Home} />

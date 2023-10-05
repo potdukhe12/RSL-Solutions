@@ -86,7 +86,7 @@ export default gymExercisesMen = {
       },
       {
         name: "Pull-Ups or Assisted Pull-Ups",
-        path: "PullUpsOrAssistedPullUps",
+        path: "AssistedPullUps",
         reps: "4 sets of 8 reps",
         description: "Use an assisted pull-up machine or pull-up bar. Pull your body up until your chin is above the bar, engaging your back and arms.",
         use: "Pull-ups are an upper body exercise that targets the back and arms, improving upper body strength and muscle definition."

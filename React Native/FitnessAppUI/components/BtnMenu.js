@@ -10,7 +10,7 @@ export default function BtnMenu({ bgColor, btnLabel, textColor, Press }) {
             // borderWidth: 0.1,
             borderRadius: 20,
             alignItems: 'center',
-            width: '105%',
+            width: '100%',
             paddingVertical: 20,
             paddingHorizontal: 25,
             marginBottom: 13,

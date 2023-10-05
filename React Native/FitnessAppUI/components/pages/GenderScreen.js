@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions
 import Background from '../Background2';
 import { purple } from '../Constants';
 import BtnMenu from '../BtnMenu2';
-import MenuModal from './MenuModal'; // Import the MenuModal component
+import MenuModal from './MenuModal';
+import style from '../style';
 
 export default function GenderScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -22,31 +23,24 @@ export default function GenderScreen(props) {
 
   return (
     <Background>
-      <View style={{ marginHorizontal: 60, marginVertical: 25, width: 265 }}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+      <View style={style.screenStyle}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
         
-        <Text style={{ color: purple, fontSize: 45, marginBottom: 10 }}>
-          Select Gender
+        <Text style={style.title}>
+          Select Gender : 
         </Text>
-        <ScrollView style={{ 
-                    height: 580,
-                    // height: Dimensions.get('window').height * 1, 
-                    marginBottom: 10, }}
+        <ScrollView style={style.scrollStyle}
                     showsVerticalScrollIndicator={false} >
         { genderOptions.map((option) => (
           <View key={option} style={{ alignItems: 'center', marginBottom: 20 }}>
             <Image
-              style={{
-                width: 150,
-                height: 210,
-              }}
-              source={
-                option === 'Male'
-                  ? require('../images/male_character.png')
-                  : require('../images/female_character.png')
-              }
+              style={{ width: 150, height: 210, }}
+              source={ option === 'Male'
+                          ? require('../images/male_character.png')
+                          : require('../images/female_character.png')
+                     }
             />
             <BtnMenu
               bgColor={option === gender ? 'green' : purple}
@@ -65,22 +59,3 @@ export default function GenderScreen(props) {
     </Background>
   );
 }
-
-const styles = StyleSheet.create({
-  menuButton: {
-    position: 'absolute',
-    top: -10,
-    right: -55,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  menuButtonText: {
-    color: purple,
-    fontSize: 22,
-    transform: [{ rotate: '90deg' }],
-    fontFamily: 'Cochin',
-  },
-});
