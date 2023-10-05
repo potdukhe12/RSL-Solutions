@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, Modal, StyleSheet, ScrollView, Dimensions } from 'react-native'
 import WebView from 'react-native-webview';
 import React, { useEffect, useState } from 'react'
-import BtnMenu from '../BtnMenu'
-import Background from '../Background2'
-import { purple, white } from '../Constants'
+import BtnMenu from '../others/BtnMenu'
+import Background from '../others/Background2'
+import { purple, white } from '../others/Constants'
 import Video from 'react-native-video';
-import MenuModal from './MenuModal';
+import MenuModal from '../others/MenuModal';
+import InfoModal from '../modals/InfoModal';
+import style from '../others/style2';
 import FastImage from 'react-native-fast-image'
 
 export default function ExerciseDetail(props) {
@@ -235,143 +237,63 @@ switch (pathUrl) {
 
   return (
     <Background>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
-          <Text style={styles.menuButtonText}>III</Text>
+      <View style={style.screenStyle2}>
+        <TouchableOpacity style={style.menuButton} onPress={toggleMenu}>
+          <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <ScrollView style={{ height: Dimensions.get('window').height * 0.85, 
+        {/* <ScrollView style={{ height: Dimensions.get('window').height * 0.85, 
                     marginBottom: 10, }}
+                    showsVerticalScrollIndicator={false} > */}
+          <ScrollView style={style.scrollStyle}
                     showsVerticalScrollIndicator={false} >
-          <Text style={{ color: purple, fontSize: 30, fontWeight: 'bold', marginBottom: 25, }}>
+          <Text style={style.subTitle}>
               {exercise.name}
           </Text>
-          <View style={styles.videoContainer}>
+          <View style={style.videoContainer}>
             <Video
                 // source={link2}
                 source={videoUri}
                 paused={false} // make it start
                 repeat={true} // make it a loop
-                style={styles.video}
+                style={style.video}
                 resizeMode= "contain"
             />
             {/* <FastImage
                 source={{
                   uri: 'https://media.tenor.com/gVr4zPBbt_wAAAAd/barbellsquats.gif',
-                  // uri: 'https://i.makeagif.com/media/12-13-2016/2G2Qfr.gif',
-                  // uri: 'https://i.makeagif.com/media/10-02-2023/9hBsRZ.gif',
                   priority: FastImage.priority.normal,
                 }}
                 style={{ width: 280, height: 280 }}
                 resizeMode={FastImage.resizeMode.contain}
             /> */}
           </View>
-          <Text style={styles.infoModalTitle}>Instruction : {exercise.reps}</Text>
+          <Text style={style.infoModalTitle}>
+              Instruction : {exercise.reps}
+          </Text>
           <TouchableOpacity
-            style={styles.customButton}
+            style={style.customButton}
             onPress={toggleInfoModal} // Open the info modal when BtnMenu is pressed
           >
-            <Text style={styles.customButtonText}>View Steps</Text>
+            <Text style={style.customButtonText}>View Steps</Text>
           </TouchableOpacity>
+          <View style={{ marginBottom: 60 }}></View>
         </ScrollView>
-        {/* Info Modal */}
-        <Modal
-          visible={infoModalVisible}
-          transparent={true}
-          onBackdropPress={toggleInfoModal} // Close the modal when tapping outside
-          animationIn="fadeIn"
-          animationOut="fadeOut"
-          onRequestClose={toggleInfoModal}
-        >
-          <View style={styles.infoContainer}>
-              <View style={styles.infoModal}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={styles.infoModalTitle}>Follow this steps :</Text>
-                <View>
-                  {exercise.description.split('. ').map((point, index) => (
-                    <Text key={index} style={styles.infoModalDescription}>
-                      • {' '}{point}
-                    </Text>
-                  ))}
-                </View>
-        
-                <Text style={styles.infoModalTitle}>Uses :</Text>
-                <View>
-                  <Text style={styles.infoModalDescription}>{exercise.use}</Text>
-                </View>
-                </ScrollView>
-                <View style={styles.infoModalButtonContainer}>
-                  <Text style={styles.arrowButtonText}>Scroll Down<Text style={{transform: [{ rotate: '90deg' }]}}>{'>'}</Text></Text>
-                  <TouchableOpacity
-                    style={styles.infoModalCloseButton}
-                    onPress={toggleInfoModal} // Close the modal when the close button is pressed
-                  >
-                    <Text style={styles.infoModalCloseButtonText}>Close</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-          </View>
-        </Modal>
+
+
       </View>
 
+        {/* Info Modal */}
+        <InfoModal isVisible={infoModalVisible}
+          toggleInfoModal={toggleInfoModal}
+          exercise={exercise}
+        />
+        
       <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 45, 
-    marginVertical: 55, 
-    width: 305 
-  },
-  menuButton: {
-    position: 'absolute',
-    top: -35,
-    right: -30,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    elevation: 3, // Add a shadow
-  },
-  menuButtonText: {
-    color: purple,
-    fontSize: 22,
-    transform: [{ rotate: '90deg' }],
-  },
-  
-  // Style for the video container
-  videoContainer: {
-    flex: 1, // Fill the entire available space
-    justifyContent: 'center', // Center horizontally
-    alignItems: 'center', // Center vertically
-    marginBottom: 30,
-    borderRadius: 20,
-    elevation: 1,
-    padding: 10,
-  },
-  // Style for the Video component
-  video: {
-    width: '100%', // Set the video width to 100%
-    aspectRatio: 1 / 1, // Adjust aspect ratio as needed
-    borderRadius: 10,
-  },
-  customButton: {
-    backgroundColor: purple,
-    borderRadius: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    marginBottom: 50,
-    alignItems: 'center',
-    // borderRadius: 10,
-    elevation: 5,
-  },
-  customButtonText: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
   infoContainer: {
     flex: 1,
     alignItems: 'flex-start',
@@ -387,13 +309,6 @@ const styles = StyleSheet.create({
     height: '65%',
     alignSelf: 'center', 
     elevation: 20, // Add a shadow
-  },
-  infoModalTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15,
-    color: purple,
-    alignSelf: 'center'
   },
   infoModalDescription: {
     fontSize: 20,

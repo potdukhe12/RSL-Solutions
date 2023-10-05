@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import BtnMenu from '../BtnMenu2';
-import Background from '../Background2';
-import { purple } from '../Constants';
-import MenuModal from './MenuModal';
-import style from '../style2';
-import dumbbellExercisesMen from './dumbbellExercisesMen';
-import gymExercisesMen from './gymExercisesMen';
-import noEquipmentExercisesMen from './noEquipmentExercisesMen';
-import dumbbellExercisesWomen from './dumbbellExercisesWomen';
-import gymExercisesWomen from './gymExercisesWomen';
-import noEquipmentExercisesWomen from './noEquipmentExercisesWomen';
+import BtnMenu from '../others/BtnMenu2';
+import Background from '../others/Background2';
+import { purple } from '../others/Constants';
+import MenuModal from '../others/MenuModal';
+import style from '../others/style2';
+import dumbbellExercisesMen from '../exerciseData/dumbbellExercisesMen';
+import gymExercisesMen from '../exerciseData/gymExercisesMen';
+import noEquipmentExercisesMen from '../exerciseData/noEquipmentExercisesMen';
+import dumbbellExercisesWomen from '../exerciseData/dumbbellExercisesWomen';
+import gymExercisesWomen from '../exerciseData/gymExercisesWomen';
+import noEquipmentExercisesWomen from '../exerciseData/noEquipmentExercisesWomen';
 
 export default ExerciseScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const [data, setData] = useState('');
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -40,15 +41,9 @@ export default ExerciseScreen = (props) => {
     fileOpt = dumbbellExercisesMen;
 
   let exercises = fileOpt[selectedMode].exercises;
-  // let exercises;
-  // if(selectedMode === 'Intermediate')
-  //   exercises = fileOpt.intermediate.exercises;
-  // else if(selectedMode === 'Advanced')
-  //   exercises = fileOpt.advanced.exercises;
-  // else
-  //     exercises = fileOpt.beginner.exercises;
   
   const handleExercisePress = (exercise) => {
+    setData(exercise);
     props.navigation.navigate('ExerciseDetail', {
       exercise: exercise,
       // fileName: fileName,
@@ -74,10 +69,10 @@ export default ExerciseScreen = (props) => {
           {exercises.map((exercise, index) => (
             <BtnMenu
               key={index}
-              bgColor={index === selectedExercise ? 'green' : purple}
+              bgColor={exercise === data ? 'green' : purple}
               textColor="white"
               btnLabel={exercise.name}
-              Press={() => handleExercisePress(exercise)}
+              Press={() => handleExercisePress(exercise) }
             />
           ))}
 

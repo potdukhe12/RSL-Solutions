@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import BtnMenu from '../BtnMenu';
-import Background from '../Background2';
-import { purple } from '../Constants';
-import MenuModal from './MenuModal'; 
-import style from '../style';
+import BtnMenu from '../others/BtnMenu';
+import Background from '../others/Background2';
+import { purple } from '../others/Constants';
+import MenuModal from '../others/MenuModal';
+import style from '../others/style';
 
 export default function ModeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);

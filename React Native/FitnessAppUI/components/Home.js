@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Background from "./Background";
-import Btn from './Btn'
-import { purple, white } from './Constants'
+import Background from "./others/Background";
+import Btn from './others/Btn'
+import { purple, white } from './others/Constants'
 
 const Home = (props) => {
 
@@ -11,13 +11,10 @@ const Home = (props) => {
             <View style={{ marginHorizontal: 40, marginVertical: 60 }}>
                 <Text style={{ color: purple, fontSize: 60 }}>Let's Get</Text>
                 <Text style={{ color: purple, fontSize: 60, marginBottom: 25 }}>Fit Together</Text>
-                <Btn 
-                    // bgColor={purple}
-                    bgColor1='#7B241C' bgColor2='#953553' bgColor3='#EF96B2' 
-                    textColor={white} 
+                <Btn textColor={white} 
                     btnLabel='Login'
                     Press={() => props.navigation.navigate("Login")} />
-                <Btn  bgColor={white} textColor={purple}
+                <Btn textColor={purple}
                     btnLabel='Register'
                     Press={() => props.navigation.navigate("Signup")} />
             </View>

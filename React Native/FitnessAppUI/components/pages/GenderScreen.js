@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
-import Background from '../Background2';
-import { purple } from '../Constants';
-import BtnMenu from '../BtnMenu2';
-import MenuModal from './MenuModal';
-import style from '../style';
+import Background from '../others/Background2';
+import { purple } from '../others/Constants';
+import BtnMenu from '../others/BtnMenu2';
+import MenuModal from '../others/MenuModal';
+import style from '../others/style';
 
 export default function GenderScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);

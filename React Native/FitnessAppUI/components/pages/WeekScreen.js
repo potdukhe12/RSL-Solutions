@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
-import BtnMenu from '../BtnMenu2';
-import Background from '../Background2';
-import { purple } from '../Constants';
-import MenuModal from './MenuModal'; // Import the MenuModal component
-import style from '../style';
+import BtnMenu from '../others/BtnMenu2';
+import Background from '../others/Background2';
+import { purple } from '../others/Constants';
+import MenuModal from '../others/MenuModal';
+import style from '../others/style';
 
 export default WeekScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);

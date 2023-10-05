@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-import { purple } from './Constants';
-import MenuModal from './pages/MenuModal'; // Import the MenuModal component
+import { purple } from './others/Constants';
+import MenuModal from './others/MenuModal';
 
 const Settings = (props) => {
   const [pushNotificationEnabled, setPushNotificationEnabled] = useState(true);
@@ -48,7 +48,7 @@ const Settings = (props) => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.logoutButton} onPress={() => {
-        props.navigation.navigate("GenderScreen")
+        props.navigation.navigate("Home")
         alert("You have logged out");
       }}>
         <Text style={styles.logoutText}>Logout</Text>

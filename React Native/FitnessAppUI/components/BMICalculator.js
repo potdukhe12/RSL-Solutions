@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Modal } from 'react-native';
-import { purple, white } from './Constants';
-import MenuModal from './pages/MenuModal';
-import Background2 from './Background2';
+import { purple, white } from './others/Constants';
+import MenuModal from './others/MenuModal';
+import Background2 from './others/Background2';
 
 const BMICalculator = (props) => {
   const [weight, setWeight] = useState('');

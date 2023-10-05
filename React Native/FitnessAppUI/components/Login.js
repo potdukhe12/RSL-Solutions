@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import Background from './Background2';
-import { purple } from './Constants';
-import Field from './Field';
-import Btn from './Btn';
+import Background from './others/Background2';
+import { purple, white } from './others/Constants';
+import Field from './others/Field';
+import Btn from './others/Btn';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = (props) => {
@@ -40,7 +40,7 @@ const Login = (props) => {
             <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
           </TouchableOpacity>
           <Btn
-            textColor="white"
+            textColor={white}
             bgColor={purple}
             btnLabel="Login"
             Press={() => {
@@ -63,7 +63,6 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    // width: '100%',
     width: Dimensions.get('window').width,
   },
   title: {
