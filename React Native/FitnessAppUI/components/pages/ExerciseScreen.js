@@ -14,16 +14,15 @@ import noEquipmentExercisesWomen from '../exerciseData/noEquipmentExercisesWomen
 
 export default ExerciseScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [data, setData] = useState('');
-
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
 
+  const [data, setData] = useState('');
   const { selectedDay, selectedGender, exerciseType, selectedMode } = props.route.params; 
-  
   const gender = selectedGender === 'Male' ? 'Men' : 'Women';
-  const selectedExercise = (exerciseType === 'Gym Exercise') ? 'gymExercises' : ( exerciseType === 'Dumbbells Exercise' ? 'dumbbellExercises' : 'noEquipmentExercises' );
+  const selectedExercise = (exerciseType === 'Gym Exercise') ? 'gymExercises' 
+                                          : ( exerciseType === 'Dumbbells Exercise' ? 'dumbbellExercises' : 'noEquipmentExercises' );
   
   const fileName = selectedExercise+gender;
   let fileOpt;
@@ -86,20 +85,3 @@ export default ExerciseScreen = (props) => {
   );
 };
 
-const styles = StyleSheet.create({
-  menuButton: {
-    position: 'absolute',
-    top: -15,
-    right: -30,
-    zIndex: 1,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-  },
-  menuButtonText: {
-    color: purple,
-    fontSize: 22,
-    transform: [{ rotate: '90deg' }],
-  },
-});

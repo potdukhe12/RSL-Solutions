@@ -9,14 +9,11 @@ import style from '../others/style';
 export default function ModeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [selectedMode, setSelectedMode] = useState('');
+  const modeOptions = ['Beginner', 'Intermediate', 'Advanced'];
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
-  const selectedGender = props.route.params.selectedGender || 'Male';
-  const exerciseType = props.route.params.exerciseType || 'Gym Exercise';
-
+  const selectedGender = props.route.params.selectedGender;
+  const exerciseType = props.route.params.exerciseType;
+  
   const handleModeSelection = (mode) => {
     setSelectedMode(mode);
     props.navigation.navigate('WeekScreen', {
@@ -26,7 +23,9 @@ export default function ModeScreen(props) {
     });
   };
 
-  const modeOptions = ['Beginner', 'Intermediate', 'Advanced'];
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
 
   return (
     <Background>

@@ -9,12 +9,12 @@ import style from '../others/style';
 export default function HomeScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [selectedExerciseType, setSelectedExerciseType] = useState('');
-
-  const selectedGender = props.route.params.selectedGender || 'Male';
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
+  const exerciseTypeOptions = [
+    'Gym Exercise',
+    'Dumbbells Exercise',
+    'Exercise without Equipments',
+  ];
+  const selectedGender = props.route.params.selectedGender;
 
   const handleExerciseTypeSelection = (exerciseType) => {
     setSelectedExerciseType(exerciseType);
@@ -24,11 +24,9 @@ export default function HomeScreen(props) {
     });
   };
 
-  const exerciseTypeOptions = [
-    'Gym Exercise',
-    'Dumbbells Exercise',
-    'Exercise without Equipments',
-  ];
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
 
   return (
     <Background>

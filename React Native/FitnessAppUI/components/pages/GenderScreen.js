@@ -9,6 +9,7 @@ import style from '../others/style';
 export default function GenderScreen(props) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [gender, setGender] = useState('');
+  const genderOptions = ['Male', 'Female'];
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -19,8 +20,6 @@ export default function GenderScreen(props) {
     props.navigation.navigate("HomeScreen", { selectedGender: selectedGender });
   };
 
-  const genderOptions = ['Male', 'Female'];
-
   return (
     <Background>
       <View style={style.screenStyle}>
@@ -28,9 +27,7 @@ export default function GenderScreen(props) {
           <Text style={style.menuButtonText}>III</Text>
         </TouchableOpacity>
         
-        <Text style={style.title}>
-          Select Gender : 
-        </Text>
+        <Text style={style.title}> Select Gender : </Text>
         <ScrollView style={style.scrollStyle}
                     showsVerticalScrollIndicator={false} >
         { genderOptions.map((option) => (

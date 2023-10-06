@@ -19,7 +19,6 @@ export default function InfoModal({ isVisible, toggleInfoModal, exercise }) {
     <View style={styles.infoContainer}>
       <View style={styles.infoModal}>
         <ScrollView 
-            // style={styles.scrollStyle} 
             showsVerticalScrollIndicator={false}>
           <Text style={style.infoModalTitle}>Follow these steps:</Text>
           <View>
@@ -62,10 +61,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height*1.07,
     width: Dimensions.get('window').width*1,
   },
-//   scrollStyle: {
-//     flexGrow: 1,
-//     height: Dimensions.get('window').height*0.65,
-//   },
   infoModal: {
     position: 'absolute',
     bottom: 80,

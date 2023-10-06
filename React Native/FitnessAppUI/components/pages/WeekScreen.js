@@ -9,11 +9,6 @@ import style from '../others/style';
 export default WeekScreen = (props) => {
   const [menuVisible, setMenuVisible] = useState(false);
   const [selectedDay, setSelectedDay] = useState('');
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
   const daysOfWeek = [
     'Sunday',
     'Monday',
@@ -35,6 +30,10 @@ export default WeekScreen = (props) => {
     });
   };
 
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
   return (
     <Background>
       <View style={style.screenStyle}>
@@ -45,7 +44,6 @@ export default WeekScreen = (props) => {
           Select Day : 
         </Text>
 
-        {/* <ScrollView style={{ height: Dimensions.get('window').height * 0.75 }}> */}
         <ScrollView style={style.scrollStyle}
                     showsVerticalScrollIndicator={false} >
           {daysOfWeek.map((day) => (

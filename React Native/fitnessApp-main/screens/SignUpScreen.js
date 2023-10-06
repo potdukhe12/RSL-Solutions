@@ -2,12 +2,12 @@ import { View, Text, TouchableOpacity, ScrollView, Dimensions, StyleSheet } from
 import React, { useState } from 'react'
 // import { themeColors } from '../theme';
 import { useNavigation } from '@react-navigation/native'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase';
 import Background from './Background2';
 import { purple } from './Constants';
 import Field from './Field';
 import Btn from './Btn';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUpScreen = (props) => {
   const navigation = useNavigation();
@@ -22,7 +22,6 @@ const SignUpScreen = (props) => {
   const handleSubmit = async () =>{
     setValidationError('');
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
       if (!firstName || !lastName || !email || !contactNumber || !password || !confirmPassword) {
         setValidationError('Please fill out all fields.');
       } else if (!/^\d{10}$/.test(contactNumber)) {

@@ -272,7 +272,7 @@ switch (pathUrl) {
           </Text>
           <TouchableOpacity
             style={style.customButton}
-            onPress={toggleInfoModal} // Open the info modal when BtnMenu is pressed
+            onPress={toggleInfoModal}
           >
             <Text style={style.customButtonText}>View Steps</Text>
           </TouchableOpacity>
@@ -287,7 +287,7 @@ switch (pathUrl) {
           toggleInfoModal={toggleInfoModal}
           exercise={exercise}
         />
-        
+
       <MenuModal isVisible={menuVisible} toggleMenu={toggleMenu} navigation={props.navigation} />
     </Background>
   )

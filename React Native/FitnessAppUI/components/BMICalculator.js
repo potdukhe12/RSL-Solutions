@@ -30,7 +30,9 @@ const BMICalculator = (props) => {
         <TouchableOpacity style={styles.menuButton} onPress={toggleMenu}>
           <Text style={styles.menuButtonText}>III</Text>
         </TouchableOpacity>
-        <Text style={{ color: purple, fontSize: 50, marginBottom: 25, marginTop: 55 }}>BMI Calculator</Text>
+
+        <Text style={{ color: purple, fontSize: 50, marginBottom: 25, marginTop: 55 }}>
+          BMI Calculator</Text>
 
         <View style={styles.inputContainer}>
           <Text style={{ fontSize: 26, }}>Weight (kg) : </Text>
@@ -42,7 +44,6 @@ const BMICalculator = (props) => {
             onChangeText={(text) => setWeight(text)}
           />
         </View>
-
         <View style={styles.inputContainer}>
           <Text style={{ fontSize: 26, }}>Height (cm) : </Text>
           <TextInput

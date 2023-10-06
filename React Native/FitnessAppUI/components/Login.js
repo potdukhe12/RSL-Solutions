@@ -31,22 +31,13 @@ const Login = (props) => {
           <Text style={styles.loginDescription}>Login to your account</Text>
           <Field placeholder="Email" keyboardType={'email-address'} value={email} onChangeText={value => setEmail(value)} />
           <Field placeholder="Password" secureTextEntry={true} value={password} onChangeText={value=>setPassword(value)} />
-          <TouchableOpacity
-            style={styles.forgotPassword}
-            onPress={() => {
-              alert('Forgot Password?');
-            }}
-          >
+          <TouchableOpacity style={styles.forgotPassword}
+                            onPress={() => { alert('Forgot Password?'); }} >
             <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
           </TouchableOpacity>
-          <Btn
-            textColor={white}
-            bgColor={purple}
-            btnLabel="Login"
-            Press={() => {
-              alert('Logged In');
-              props.navigation.navigate('GenderScreen');
-            }}
+          <Btn textColor={white} bgColor={purple} btnLabel="Login"
+            Press={() => { alert('Logged In');
+                           props.navigation.navigate('GenderScreen'); }}
           />
           <View style={styles.signupContainer}>
             <Text style={styles.signupText}>Don't have an account ?</Text>

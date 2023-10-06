@@ -1,7 +1,6 @@
 export default dumbbellExercisesMen = {
 
     // ... (beginner level with descriptions)
-    
     Beginner: {
       warmUp: "Warm-Up: 5-7 minutes • Perform light cardio (jumping jacks, high knees, jogging in place) to increase your heart rate and warm up your muscles.",
       exercises: [
