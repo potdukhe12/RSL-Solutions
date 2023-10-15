@@ -10,6 +10,7 @@ npm install @react-navigation/native-stack
 npm install react-native-input-secure-text
 npm install @react-navigation/drawer
 npm install --save react-native-video
+npm install react-native-fast-image
 npm install react-native-vector-icons/FontAwesome5
 
 *** Others ***
